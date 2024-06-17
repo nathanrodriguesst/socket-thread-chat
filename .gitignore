@@ -1,0 +1,71 @@
+# Ignore build directories
+build/
+Build/
+cmake-build-debug/
+cmake-build-release/
+CMakeFiles/
+CMakeCache.txt
+
+# Ignore generated files
+*.cmake
+*.cbp
+*.user
+*.ninja
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Ignore output binaries and libraries
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Ignore temporary files
+*.bak
+*.tmp
+*.temp
+*.log
+
+# Ignore package and IDE specific files
+*.DS_Store
+.vscode/
+.idea/
+*.iml
+
+# Ignore auto-generated headers
+*.h.gch
+*.h.gch.d
+
+# Ignore coverage and testing artifacts
+*.gcno
+*.gcda
+*.gcov
+*.profraw
+*.profdata
+Testing/
+CTestTestfile.cmake
+CTestCostData.txt
+DartConfiguration.tcl
+
+# Ignore documentation
+/docs/_build/
+docs/_build/
+
+# Ignore other user-specific files
+*.swp
+*.swo
+*.~undo-tree~
+*.un~
+*.orig
+*~
+
+# Ignore Python virtual environment directories
+venv/
+ENV/
+env/
+
