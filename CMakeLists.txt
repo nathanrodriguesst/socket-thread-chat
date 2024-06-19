@@ -3,4 +3,6 @@ project(chat)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(chat main.cpp)
+add_executable(chat main.cpp
+        client.cpp
+        client.cpp)

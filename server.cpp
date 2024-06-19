@@ -10,19 +10,18 @@ void receiveMessages(int clientSocket) {
     while (true) {
         ssize_t bytesRead = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
         if (bytesRead == -1) {
-            std::cerr << "Failed to receive data\n";
+            std::cerr << "Failed to receive data!\n";
             break;
         } else if (bytesRead == 0) {
             // Client closed the connection
-            std::cout << "Client disconnected\n";
+            std::cout << "Client disconnected!\n";
             break;
         } else {
             buffer[bytesRead] = '\0'; // Null-terminate the buffer
             std::cout << "Client: " << buffer << std::endl;
 
-            // If the client sends "cmd:STOP", you can handle it as needed
-            if (strcmp(buffer, "cmd:STOP") == 0) {
-                std::cout << "Client requested to stop the server.\n";
+            if (strcmp(buffer, "cmd:quit") == 0) {
+                std::cout << "Client has been disconnected!\n";
                 break;
             }
         }
@@ -34,14 +33,13 @@ void sendMessages(int clientSocket) {
     std::string message;
     while (true) {
         std::getline(std::cin, message);
-        if (message == "cmd:STOP") {
-            std::cout << "Stopping server...\n";
+        if (message == "cmd:kick") {
+            std::cout << "Kicking client from server...\n";
             send(clientSocket, message.c_str(), message.size(), 0);
             break;
         }
 
         std::cout << "Me: " << message << std::endl;
-
         send(clientSocket, message.c_str(), message.size(), 0);
     }
     close(clientSocket);
@@ -60,7 +58,7 @@ void connection() {
 
     sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(27908);
+    serverAddress.sin_port = htons(5568);
     serverAddress.sin_addr.s_addr = INADDR_ANY;
 
     if (bind(serverSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) == -1) {
